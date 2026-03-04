@@ -53,7 +53,46 @@ class MatrixMultiplication
     // Line-by-line matrix multiplication
     void OnMultLine(int m_ar, int m_br)
     {
+        Stopwatch timer = new Stopwatch();
 
+        int i, j, k;
+
+        double[] pha = new double[m_ar * m_ar];
+        double[] phb = new double[m_ar * m_ar];
+        double[] phc = new double[m_ar * m_ar];
+
+        for (i = 0; i < m_ar; i++)
+            for (j = 0; j < m_ar; j++)
+                pha[i * m_ar + j] = 1.0;
+
+        for (i = 0; i < m_br; i++)
+            for (j = 0; j < m_br; j++)
+                phb[i * m_br + j] = (double)(i + 1);
+
+        timer.Start();
+
+        for (i = 0; i < m_ar; i++)
+        {
+            for (j = 0; j < m_br; j++)
+            {
+                for (k = 0; k < m_ar; k++)
+                {
+                    phc[i * m_ar + j] += pha[i * m_ar + k] * phb[k * m_br + j];
+                }
+            }
+        }
+
+        timer.Stop();
+        string st = string.Format("Time: {0:F3} seconds\n", timer.Elapsed.TotalSeconds);
+        Console.Write(st);
+
+        Console.WriteLine("Result matrix: ");
+        for (i = 0; i < 1; i++)
+        {
+            for (j = 0; j < Math.Min(10, m_br); j++)
+                Console.Write(phc[j] + " ");
+        }
+        Console.WriteLine();
     }
 
     // Block matrix multiplication

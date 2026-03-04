@@ -70,7 +70,6 @@ void OnMultLine(int m_ar, int m_br)
 {
     SYSTEMTIME Time1, Time2;
     char st[100];
-    double temp;
     int i, j, k;
 
     double *pha, *phb, *phc;
@@ -99,6 +98,14 @@ void OnMultLine(int m_ar, int m_br)
             for j  → multiply across entire row k of B
                 C[i][j] += A[i][k] * B[k][j]
     */
+
+    for(i = 0; i < m_ar; i++){
+        for(k = 0; k < m_ar; k++){
+            for(j = 0; k < m_br; j++){
+                phc[i*m_ar + j] = pha[i*m_ar + k] * phb[k*m_br + j];
+            }
+        }
+    }
 
     Time2 = clock();
     snprintf(st, sizeof(st), "Time: %3.3f seconds\n",
