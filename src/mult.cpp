@@ -74,10 +74,13 @@ void OnMultLine(int m_ar, int m_br)
 
     Time1 = clock();
 
-    for(i = 0; i < m_ar; i++){
-        for(k = 0; k < m_ar; k++){
-            for(j = 0; j < m_br; j++){
-                phc[i*m_ar + j] += pha[i*m_ar + k] * phb[k*m_br + j];
+    for (i = 0; i < m_ar; i++) {
+        int iRow = i * m_ar;
+        for (k = 0; k < m_ar; k++) {
+            double aik = pha[iRow + k];
+            int kRow = k * m_br;
+            for (j = 0; j < m_br; j++) {
+                phc[iRow + j] += aik * phb[kRow + j];
             }
         }
     }
@@ -141,7 +144,8 @@ void OnMultBlock(int m_ar, int m_br, int bkSize)
                     {
                         for(j = jj; j < min(jj + bkSize, m_br); j++)
                         {
-                            phc[i*m_ar + j] += pha[i*m_ar + k] * phb[k*m_br + j];
+                            double aik = pha[i*m_ar + k];
+                            phc[i*m_ar + j] += aik * phb[k*m_br + j];
                         }
                     }
                 }
