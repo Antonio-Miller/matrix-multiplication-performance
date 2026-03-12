@@ -166,7 +166,6 @@ public class Mult {
     }
 
     // Part 2.1 – Version 1 (ijk), Variant B: parallel inner k loop
-    // NOTE: race condition on phc[i][j] — included for analysis, mirrors C++ version
     static void onMultParallelV1B(int mAr, int mBr, int numThreads) throws Exception {
         double[] pha = new double[mAr * mAr];
         double[] phb = new double[mAr * mAr];
