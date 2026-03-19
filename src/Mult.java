@@ -4,6 +4,46 @@ import java.util.stream.IntStream;
 
 public class Mult {
 
+    static double computeGflops(int n, double elapsedSeconds) {
+        return 2.0 * n * n * n / (elapsedSeconds * 1e9);
+    }
+
+    static void printResultPreview(double[] phc, int mBr) {
+        System.out.print("Result preview (first row, up to 10 values): ");
+        for (int j = 0; j < Math.min(10, mBr); j++) {
+            System.out.print(phc[j] + " ");
+        }
+        System.out.println();
+    }
+
+    static void printRunSummary(String algorithm, int n, double elapsedSeconds,
+                                int threads, int blockSize, boolean raceWarning) {
+        double gflops = computeGflops(n, elapsedSeconds);
+
+        System.out.println("\n=== Run Summary ===");
+        System.out.println("Algorithm  : " + algorithm);
+        System.out.println("Matrix     : " + n + "x" + n);
+        if (threads > 0) {
+            System.out.println("Threads    : " + threads);
+        }
+        if (blockSize > 0) {
+            System.out.println("Block size : " + blockSize);
+        }
+        System.out.printf("Time (s)   : %.6f%n", elapsedSeconds);
+        System.out.printf("GFlop/s    : %.3f%n", gflops);
+        System.out.printf("CSV        : %s,%d,%s,%s,%.6f,%.3f%n",
+                algorithm,
+                n,
+                threads > 0 ? Integer.toString(threads) : "-",
+                blockSize > 0 ? Integer.toString(blockSize) : "-",
+                elapsedSeconds,
+                gflops);
+        if (raceWarning) {
+            System.out.println("Warning    : This variant has a race condition; values may be incorrect.");
+        }
+        System.out.println("===================\n");
+    }
+
     static void onMult(int mAr, int mBr) {
         double[] pha = new double[mAr * mAr];
         double[] phb = new double[mAr * mAr];
@@ -30,12 +70,9 @@ public class Mult {
         }
 
         long time2 = System.nanoTime();
-        System.out.printf("Time: %.3f seconds%n", (time2 - time1) / 1e9);
-
-        System.out.println("Result matrix:");
-        for (int j = 0; j < Math.min(10, mBr); j++)
-            System.out.print(phc[j] + " ");
-        System.out.println();
+        double elapsed = (time2 - time1) / 1e9;
+        printRunSummary("P1-V1-ijk", mAr, elapsed, -1, -1, false);
+        printResultPreview(phc, mBr);
     }
 
     // Line-by-line (cache-friendly ikj) matrix multiplication
@@ -73,12 +110,9 @@ public class Mult {
         }
 
         long time2 = System.nanoTime();
-        System.out.printf("Time: %.3f seconds%n", (time2 - time1) / 1e9);
-
-        System.out.println("Result matrix:");
-        for (int j = 0; j < Math.min(10, mBr); j++)
-            System.out.print(phc[j] + " ");
-        System.out.println();
+        double elapsed = (time2 - time1) / 1e9;
+        printRunSummary("P1-V2-ikj(line)", mAr, elapsed, -1, -1, false);
+        printResultPreview(phc, mBr);
     }
 
     // Block matrix multiplication
@@ -117,12 +151,9 @@ public class Mult {
         }
 
         long time2 = System.nanoTime();
-        System.out.printf("Time: %.3f seconds%n", (time2 - time1) / 1e9);
-
-        System.out.println("Result matrix:");
-        for (int j = 0; j < Math.min(10, mBr); j++)
-            System.out.print(phc[j] + " ");
-        System.out.println();
+        double elapsed = (time2 - time1) / 1e9;
+        printRunSummary("P1-V3-block", mAr, elapsed, -1, bkSize, false);
+        printResultPreview(phc, mBr);
     }
 
     // Part 2.1 – Version 1 (ijk), Variant A: parallel outer i loop (#pragma omp parallel for)
@@ -138,31 +169,24 @@ public class Mult {
             for (int j = 0; j < mBr; j++)
                 phb[i * mBr + j] = (double)(i + 1);
 
-        ForkJoinPool pool = new ForkJoinPool(numThreads);
         long t1 = System.nanoTime();
-
-        pool.submit(() ->
-            IntStream.range(0, mAr).parallel().forEach(i -> {
-                for (int j = 0; j < mBr; j++) {
-                    double temp = 0;
-                    for (int k = 0; k < mAr; k++)
-                        temp += pha[i * mAr + k] * phb[k * mBr + j];
-                    phc[i * mAr + j] = temp;
-                }
-            })
-        ).get();
+        try (ForkJoinPool pool = new ForkJoinPool(numThreads)) {
+            pool.submit(() ->
+                IntStream.range(0, mAr).parallel().forEach(i -> {
+                    for (int j = 0; j < mBr; j++) {
+                        double temp = 0;
+                        for (int k = 0; k < mAr; k++)
+                            temp += pha[i * mAr + k] * phb[k * mBr + j];
+                        phc[i * mAr + j] = temp;
+                    }
+                })
+            ).get();
+        }
 
         long t2 = System.nanoTime();
         double elapsed = (t2 - t1) / 1e9;
-        double gflops = 2.0 * mAr * mAr * mAr / (elapsed * 1e9);
-        System.out.printf("[V1-ParallelFor] Threads: %d | Time: %.3f s | GFlop/s: %.3f%n",
-                numThreads, elapsed, gflops);
-
-        System.out.println("Result matrix:");
-        for (int j = 0; j < Math.min(10, mBr); j++)
-            System.out.print(phc[j] + " ");
-        System.out.println();
-        pool.shutdown();
+        printRunSummary("P2-V1A-ijk-parallel-for", mAr, elapsed, numThreads, -1, false);
+        printResultPreview(phc, mBr);
     }
 
     // Part 2.1 – Version 1 (ijk), Variant B: parallel inner k loop
@@ -178,37 +202,31 @@ public class Mult {
             for (int j = 0; j < mBr; j++)
                 phb[i * mBr + j] = (double)(i + 1);
 
-        ForkJoinPool pool = new ForkJoinPool(numThreads);
         long t1 = System.nanoTime();
 
-        // All threads run all (i,j) iterations; k range split per thread → race on phc[i*mAr+j]
-        pool.submit(() ->
-            IntStream.range(0, numThreads).parallel().forEach(threadId -> {
-                int kChunk = (mAr + numThreads - 1) / numThreads;
-                int kStart = threadId * kChunk;
-                int kEnd = Math.min(kStart + kChunk, mAr);
-                for (int i = 0; i < mAr; i++) {
-                    for (int j = 0; j < mBr; j++) {
-                        double temp = 0;
-                        for (int k = kStart; k < kEnd; k++)
-                            temp += pha[i * mAr + k] * phb[k * mBr + j];
-                        phc[i * mAr + j] += temp; // race condition (same as C++ version)
+        // All threads run all (i,j) iterations; k range split per thread -> race on phc[i*mAr+j]
+        try (ForkJoinPool pool = new ForkJoinPool(numThreads)) {
+            pool.submit(() ->
+                IntStream.range(0, numThreads).parallel().forEach(threadId -> {
+                    int kChunk = (mAr + numThreads - 1) / numThreads;
+                    int kStart = threadId * kChunk;
+                    int kEnd = Math.min(kStart + kChunk, mAr);
+                    for (int i = 0; i < mAr; i++) {
+                        for (int j = 0; j < mBr; j++) {
+                            double temp = 0;
+                            for (int k = kStart; k < kEnd; k++)
+                                temp += pha[i * mAr + k] * phb[k * mBr + j];
+                            phc[i * mAr + j] += temp; // race condition (same as C++ version)
+                        }
                     }
-                }
-            })
-        ).get();
+                })
+            ).get();
+        }
 
         long t2 = System.nanoTime();
         double elapsed = (t2 - t1) / 1e9;
-        double gflops = 2.0 * mAr * mAr * mAr / (elapsed * 1e9);
-        System.out.printf("[V1-ParallelInner] Threads: %d | Time: %.3f s | GFlop/s: %.3f%n",
-                numThreads, elapsed, gflops);
-
-        System.out.println("Result matrix:");
-        for (int j = 0; j < Math.min(10, mBr); j++)
-            System.out.print(phc[j] + " ");
-        System.out.println();
-        pool.shutdown();
+        printRunSummary("P2-V1B-ijk-inner-k", mAr, elapsed, numThreads, -1, true);
+        printResultPreview(phc, mBr);
     }
 
     // Part 2.1 – Version 2 (ikj), parallel outer i loop
@@ -224,28 +242,21 @@ public class Mult {
             for (int j = 0; j < mBr; j++)
                 phb[i * mBr + j] = (double)(i + 1);
 
-        ForkJoinPool pool = new ForkJoinPool(numThreads);
         long t1 = System.nanoTime();
-
-        pool.submit(() ->
-            IntStream.range(0, mAr).parallel().forEach(i -> {
-                for (int k = 0; k < mAr; k++)
-                    for (int j = 0; j < mBr; j++)
-                        phc[i * mAr + j] += pha[i * mAr + k] * phb[k * mBr + j];
-            })
-        ).get();
+        try (ForkJoinPool pool = new ForkJoinPool(numThreads)) {
+            pool.submit(() ->
+                IntStream.range(0, mAr).parallel().forEach(i -> {
+                    for (int k = 0; k < mAr; k++)
+                        for (int j = 0; j < mBr; j++)
+                            phc[i * mAr + j] += pha[i * mAr + k] * phb[k * mBr + j];
+                })
+            ).get();
+        }
 
         long t2 = System.nanoTime();
         double elapsed = (t2 - t1) / 1e9;
-        double gflops = 2.0 * mAr * mAr * mAr / (elapsed * 1e9);
-        System.out.printf("[V2-ParallelFor] Threads: %d | Time: %.3f s | GFlop/s: %.3f%n",
-                numThreads, elapsed, gflops);
-
-        System.out.println("Result matrix:");
-        for (int j = 0; j < Math.min(10, mBr); j++)
-            System.out.print(phc[j] + " ");
-        System.out.println();
-        pool.shutdown();
+        printRunSummary("P2-V2-ikj-parallel-for", mAr, elapsed, numThreads, -1, false);
+        printResultPreview(phc, mBr);
     }
 
     public static void main(String[] args) throws Exception {
