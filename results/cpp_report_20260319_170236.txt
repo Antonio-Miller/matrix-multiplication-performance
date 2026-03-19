@@ -1,0 +1,1845 @@
+CPD Project 1 - C++ Automated Runner
+Timestamp      : 20260319_170236
+Mode           : full
+Source folder  : /home/josebreis05/repos/g11/assign1/src
+Raw output     : /home/josebreis05/repos/g11/assign1/src/../results/cpp_report_20260319_170236.txt
+CSV output     : /home/josebreis05/repos/g11/assign1/src/../results/cpp_report_20260319_170236.csv
+Perf output    : /home/josebreis05/repos/g11/assign1/src/../results/cpp_perf_20260319_170236.txt
+
+[1/6] Compiling C++ source (OpenMP)...
+Compilation done.
+
+[2/6] Part 1.1 and 1.2 (small sizes, C++):
+
+----------------------------------------------------------------
+RUN CASE | op=1 | size=1024
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V1-ijk(transposed B)
+Matrix     : 1024x1024
+Time (s)   : 0.405301
+GFlop/s    : 5.298
+CSV        : P1-V1-ijk(transposed B),1024,-,-,0.405301,5.298
+===================
+
+Result preview (first row, up to 10 values): 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=2 | size=1024
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V2-ikj(line)
+Matrix     : 1024x1024
+Time (s)   : 0.337111
+GFlop/s    : 6.370
+CSV        : P1-V2-ikj(line),1024,-,-,0.337111,6.370
+===================
+
+Result preview (first row, up to 10 values): 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=1 | size=1536
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V1-ijk(transposed B)
+Matrix     : 1536x1536
+Time (s)   : 1.507933
+GFlop/s    : 4.806
+CSV        : P1-V1-ijk(transposed B),1536,-,-,1.507933,4.806
+===================
+
+Result preview (first row, up to 10 values): 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=2 | size=1536
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V2-ikj(line)
+Matrix     : 1536x1536
+Time (s)   : 1.308391
+GFlop/s    : 5.539
+CSV        : P1-V2-ikj(line),1536,-,-,1.308391,5.539
+===================
+
+Result preview (first row, up to 10 values): 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=1 | size=2048
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V1-ijk(transposed B)
+Matrix     : 2048x2048
+Time (s)   : 3.791085
+GFlop/s    : 4.532
+CSV        : P1-V1-ijk(transposed B),2048,-,-,3.791085,4.532
+===================
+
+Result preview (first row, up to 10 values): 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=2 | size=2048
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V2-ikj(line)
+Matrix     : 2048x2048
+Time (s)   : 3.558773
+GFlop/s    : 4.827
+CSV        : P1-V2-ikj(line),2048,-,-,3.558773,4.827
+===================
+
+Result preview (first row, up to 10 values): 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=1 | size=2560
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V1-ijk(transposed B)
+Matrix     : 2560x2560
+Time (s)   : 7.984400
+GFlop/s    : 4.202
+CSV        : P1-V1-ijk(transposed B),2560,-,-,7.984400,4.202
+===================
+
+Result preview (first row, up to 10 values): 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=2 | size=2560
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V2-ikj(line)
+Matrix     : 2560x2560
+Time (s)   : 7.794062
+GFlop/s    : 4.305
+CSV        : P1-V2-ikj(line),2560,-,-,7.794062,4.305
+===================
+
+Result preview (first row, up to 10 values): 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=1 | size=3072
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V1-ijk(transposed B)
+Matrix     : 3072x3072
+Time (s)   : 13.750663
+GFlop/s    : 4.217
+CSV        : P1-V1-ijk(transposed B),3072,-,-,13.750663,4.217
+===================
+
+Result preview (first row, up to 10 values): 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=2 | size=3072
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V2-ikj(line)
+Matrix     : 3072x3072
+Time (s)   : 13.533577
+GFlop/s    : 4.284
+CSV        : P1-V2-ikj(line),3072,-,-,13.533577,4.284
+===================
+
+Result preview (first row, up to 10 values): 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+[3/6] Part 1.2 (large sizes, C++ line/ikj):
+
+----------------------------------------------------------------
+RUN CASE | op=2 | size=4096
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V2-ikj(line)
+Matrix     : 4096x4096
+Time (s)   : 33.783493
+GFlop/s    : 4.068
+CSV        : P1-V2-ikj(line),4096,-,-,33.783493,4.068
+===================
+
+Result preview (first row, up to 10 values): 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=2 | size=6144
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V2-ikj(line)
+Matrix     : 6144x6144
+Time (s)   : 113.223597
+GFlop/s    : 4.097
+CSV        : P1-V2-ikj(line),6144,-,-,113.223597,4.097
+===================
+
+Result preview (first row, up to 10 values): 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=2 | size=8192
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V2-ikj(line)
+Matrix     : 8192x8192
+Time (s)   : 265.078594
+GFlop/s    : 4.148
+CSV        : P1-V2-ikj(line),8192,-,-,265.078594,4.148
+===================
+
+Result preview (first row, up to 10 values): 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=2 | size=10240
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V2-ikj(line)
+Matrix     : 10240x10240
+Time (s)   : 514.030406
+GFlop/s    : 4.178
+CSV        : P1-V2-ikj(line),10240,-,-,514.030406,4.178
+===================
+
+Result preview (first row, up to 10 values): 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+[4/6] Part 1.3 Block (sizes x block sizes):
+
+----------------------------------------------------------------
+RUN CASE | op=3 | size=4096 | extra=128
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Block Size? 
+=== Run Summary ===
+Algorithm  : P1-V3-block
+Matrix     : 4096x4096
+Block size : 128
+Time (s)   : 19.893138
+GFlop/s    : 6.909
+CSV        : P1-V3-block,4096,-,128,19.893138,6.909
+===================
+
+Result preview (first row, up to 10 values): 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=3 | size=4096 | extra=256
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Block Size? 
+=== Run Summary ===
+Algorithm  : P1-V3-block
+Matrix     : 4096x4096
+Block size : 256
+Time (s)   : 18.640384
+GFlop/s    : 7.373
+CSV        : P1-V3-block,4096,-,256,18.640384,7.373
+===================
+
+Result preview (first row, up to 10 values): 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=3 | size=4096 | extra=512
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Block Size? 
+=== Run Summary ===
+Algorithm  : P1-V3-block
+Matrix     : 4096x4096
+Block size : 512
+Time (s)   : 18.907298
+GFlop/s    : 7.269
+CSV        : P1-V3-block,4096,-,512,18.907298,7.269
+===================
+
+Result preview (first row, up to 10 values): 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=3 | size=6144 | extra=128
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Block Size? 
+=== Run Summary ===
+Algorithm  : P1-V3-block
+Matrix     : 6144x6144
+Block size : 128
+Time (s)   : 67.167370
+GFlop/s    : 6.906
+CSV        : P1-V3-block,6144,-,128,67.167370,6.906
+===================
+
+Result preview (first row, up to 10 values): 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=3 | size=6144 | extra=256
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Block Size? 
+=== Run Summary ===
+Algorithm  : P1-V3-block
+Matrix     : 6144x6144
+Block size : 256
+Time (s)   : 62.250454
+GFlop/s    : 7.451
+CSV        : P1-V3-block,6144,-,256,62.250454,7.451
+===================
+
+Result preview (first row, up to 10 values): 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=3 | size=6144 | extra=512
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Block Size? 
+=== Run Summary ===
+Algorithm  : P1-V3-block
+Matrix     : 6144x6144
+Block size : 512
+Time (s)   : 63.414352
+GFlop/s    : 7.315
+CSV        : P1-V3-block,6144,-,512,63.414352,7.315
+===================
+
+Result preview (first row, up to 10 values): 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 18877440.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=3 | size=8192 | extra=128
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Block Size? 
+=== Run Summary ===
+Algorithm  : P1-V3-block
+Matrix     : 8192x8192
+Block size : 128
+Time (s)   : 157.774393
+GFlop/s    : 6.969
+CSV        : P1-V3-block,8192,-,128,157.774393,6.969
+===================
+
+Result preview (first row, up to 10 values): 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=3 | size=8192 | extra=256
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Block Size? 
+=== Run Summary ===
+Algorithm  : P1-V3-block
+Matrix     : 8192x8192
+Block size : 256
+Time (s)   : 151.432214
+GFlop/s    : 7.261
+CSV        : P1-V3-block,8192,-,256,151.432214,7.261
+===================
+
+Result preview (first row, up to 10 values): 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=3 | size=8192 | extra=512
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Block Size? 
+=== Run Summary ===
+Algorithm  : P1-V3-block
+Matrix     : 8192x8192
+Block size : 512
+Time (s)   : 150.133687
+GFlop/s    : 7.324
+CSV        : P1-V3-block,8192,-,512,150.133687,7.324
+===================
+
+Result preview (first row, up to 10 values): 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=3 | size=10240 | extra=128
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Block Size? 
+=== Run Summary ===
+Algorithm  : P1-V3-block
+Matrix     : 10240x10240
+Block size : 128
+Time (s)   : 309.923677
+GFlop/s    : 6.929
+CSV        : P1-V3-block,10240,-,128,309.923677,6.929
+===================
+
+Result preview (first row, up to 10 values): 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=3 | size=10240 | extra=256
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Block Size? 
+=== Run Summary ===
+Algorithm  : P1-V3-block
+Matrix     : 10240x10240
+Block size : 256
+Time (s)   : 302.836320
+GFlop/s    : 7.091
+CSV        : P1-V3-block,10240,-,256,302.836320,7.091
+===================
+
+Result preview (first row, up to 10 values): 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=3 | size=10240 | extra=512
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Block Size? 
+=== Run Summary ===
+Algorithm  : P1-V3-block
+Matrix     : 10240x10240
+Block size : 512
+Time (s)   : 294.439955
+GFlop/s    : 7.293
+CSV        : P1-V3-block,10240,-,512,294.439955,7.293
+===================
+
+Result preview (first row, up to 10 values): 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 52433920.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+[5/6] Part 2.1 (4 threads, sizes 1024..3072):
+
+----------------------------------------------------------------
+RUN CASE | op=4 | size=1024 | extra=4
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V1A-ijk-parallel-for
+Matrix     : 1024x1024
+Threads    : 4
+Time (s)   : 0.664306
+GFlop/s    : 3.233
+CSV        : P2-V1A-ijk-parallel-for,1024,4,-,0.664306,3.233
+===================
+
+Result preview (first row, up to 10 values): 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=5 | size=1024 | extra=4
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V1B-ijk-inner-k
+Matrix     : 1024x1024
+Threads    : 4
+Time (s)   : 0.179620
+GFlop/s    : 11.956
+CSV        : P2-V1B-ijk-inner-k,1024,4,-,0.179620,11.956
+Warning    : This variant has a race condition; values may be incorrect.
+===================
+
+Result preview (first row, up to 10 values): 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=6 | size=1024 | extra=4
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V2-ikj-parallel-for
+Matrix     : 1024x1024
+Threads    : 4
+Time (s)   : 0.137402
+GFlop/s    : 15.629
+CSV        : P2-V2-ikj-parallel-for,1024,4,-,0.137402,15.629
+===================
+
+Result preview (first row, up to 10 values): 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 524800.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=4 | size=1536 | extra=4
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V1A-ijk-parallel-for
+Matrix     : 1536x1536
+Threads    : 4
+Time (s)   : 2.353584
+GFlop/s    : 3.079
+CSV        : P2-V1A-ijk-parallel-for,1536,4,-,2.353584,3.079
+===================
+
+Result preview (first row, up to 10 values): 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=5 | size=1536 | extra=4
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V1B-ijk-inner-k
+Matrix     : 1536x1536
+Threads    : 4
+Time (s)   : 0.944886
+GFlop/s    : 7.671
+CSV        : P2-V1B-ijk-inner-k,1536,4,-,0.944886,7.671
+Warning    : This variant has a race condition; values may be incorrect.
+===================
+
+Result preview (first row, up to 10 values): 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=6 | size=1536 | extra=4
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V2-ikj-parallel-for
+Matrix     : 1536x1536
+Threads    : 4
+Time (s)   : 0.467816
+GFlop/s    : 15.493
+CSV        : P2-V2-ikj-parallel-for,1536,4,-,0.467816,15.493
+===================
+
+Result preview (first row, up to 10 values): 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 1180416.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=4 | size=2048 | extra=4
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V1A-ijk-parallel-for
+Matrix     : 2048x2048
+Threads    : 4
+Time (s)   : 5.851382
+GFlop/s    : 2.936
+CSV        : P2-V1A-ijk-parallel-for,2048,4,-,5.851382,2.936
+===================
+
+Result preview (first row, up to 10 values): 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=5 | size=2048 | extra=4
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V1B-ijk-inner-k
+Matrix     : 2048x2048
+Threads    : 4
+Time (s)   : 3.731766
+GFlop/s    : 4.604
+CSV        : P2-V1B-ijk-inner-k,2048,4,-,3.731766,4.604
+Warning    : This variant has a race condition; values may be incorrect.
+===================
+
+Result preview (first row, up to 10 values): 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=6 | size=2048 | extra=4
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V2-ikj-parallel-for
+Matrix     : 2048x2048
+Threads    : 4
+Time (s)   : 1.370330
+GFlop/s    : 12.537
+CSV        : P2-V2-ikj-parallel-for,2048,4,-,1.370330,12.537
+===================
+
+Result preview (first row, up to 10 values): 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 2098176.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=4 | size=2560 | extra=4
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V1A-ijk-parallel-for
+Matrix     : 2560x2560
+Threads    : 4
+Time (s)   : 15.239969
+GFlop/s    : 2.202
+CSV        : P2-V1A-ijk-parallel-for,2560,4,-,15.239969,2.202
+===================
+
+Result preview (first row, up to 10 values): 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=5 | size=2560 | extra=4
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V1B-ijk-inner-k
+Matrix     : 2560x2560
+Threads    : 4
+Time (s)   : 12.209139
+GFlop/s    : 2.748
+CSV        : P2-V1B-ijk-inner-k,2560,4,-,12.209139,2.748
+Warning    : This variant has a race condition; values may be incorrect.
+===================
+
+Result preview (first row, up to 10 values): 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=6 | size=2560 | extra=4
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V2-ikj-parallel-for
+Matrix     : 2560x2560
+Threads    : 4
+Time (s)   : 2.914398
+GFlop/s    : 11.513
+CSV        : P2-V2-ikj-parallel-for,2560,4,-,2.914398,11.513
+===================
+
+Result preview (first row, up to 10 values): 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 3278080.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=4 | size=3072 | extra=4
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V1A-ijk-parallel-for
+Matrix     : 3072x3072
+Threads    : 4
+Time (s)   : 28.558069
+GFlop/s    : 2.030
+CSV        : P2-V1A-ijk-parallel-for,3072,4,-,28.558069,2.030
+===================
+
+Result preview (first row, up to 10 values): 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=5 | size=3072 | extra=4
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V1B-ijk-inner-k
+Matrix     : 3072x3072
+Threads    : 4
+Time (s)   : 27.994526
+GFlop/s    : 2.071
+CSV        : P2-V1B-ijk-inner-k,3072,4,-,27.994526,2.071
+Warning    : This variant has a race condition; values may be incorrect.
+===================
+
+Result preview (first row, up to 10 values): 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=6 | size=3072 | extra=4
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V2-ikj-parallel-for
+Matrix     : 3072x3072
+Threads    : 4
+Time (s)   : 5.092147
+GFlop/s    : 11.387
+CSV        : P2-V2-ikj-parallel-for,3072,4,-,5.092147,11.387
+===================
+
+Result preview (first row, up to 10 values): 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 4720128.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+[6/6] Part 2.2 (V2 scaling, size 8192):
+
+----------------------------------------------------------------
+RUN CASE | op=6 | size=8192 | extra=1
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V2-ikj-parallel-for
+Matrix     : 8192x8192
+Threads    : 1
+Time (s)   : 274.711725
+GFlop/s    : 4.002
+CSV        : P2-V2-ikj-parallel-for,8192,1,-,274.711725,4.002
+===================
+
+Result preview (first row, up to 10 values): 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=6 | size=8192 | extra=4
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V2-ikj-parallel-for
+Matrix     : 8192x8192
+Threads    : 4
+Time (s)   : 96.917600
+GFlop/s    : 11.345
+CSV        : P2-V2-ikj-parallel-for,8192,4,-,96.917600,11.345
+===================
+
+Result preview (first row, up to 10 values): 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=6 | size=8192 | extra=8
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V2-ikj-parallel-for
+Matrix     : 8192x8192
+Threads    : 8
+Time (s)   : 76.097863
+GFlop/s    : 14.449
+CSV        : P2-V2-ikj-parallel-for,8192,8,-,76.097863,14.449
+===================
+
+Result preview (first row, up to 10 values): 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=6 | size=8192 | extra=12
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V2-ikj-parallel-for
+Matrix     : 8192x8192
+Threads    : 12
+Time (s)   : 58.517529
+GFlop/s    : 18.789
+CSV        : P2-V2-ikj-parallel-for,8192,12,-,58.517529,18.789
+===================
+
+Result preview (first row, up to 10 values): 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=6 | size=8192 | extra=16
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V2-ikj-parallel-for
+Matrix     : 8192x8192
+Threads    : 16
+Time (s)   : 51.679638
+GFlop/s    : 21.276
+CSV        : P2-V2-ikj-parallel-for,8192,16,-,51.679638,21.276
+===================
+
+Result preview (first row, up to 10 values): 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=6 | size=8192 | extra=20
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V2-ikj-parallel-for
+Matrix     : 8192x8192
+Threads    : 20
+Time (s)   : 48.453126
+GFlop/s    : 22.692
+CSV        : P2-V2-ikj-parallel-for,8192,20,-,48.453126,22.692
+===================
+
+Result preview (first row, up to 10 values): 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+----------------------------------------------------------------
+RUN CASE | op=6 | size=8192 | extra=24
+----------------------------------------------------------------
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Number of threads? 
+=== Run Summary ===
+Algorithm  : P2-V2-ikj-parallel-for
+Matrix     : 8192x8192
+Threads    : 24
+Time (s)   : 49.513726
+GFlop/s    : 22.206
+CSV        : P2-V2-ikj-parallel-for,8192,24,-,49.513726,22.206
+===================
+
+Result preview (first row, up to 10 values): 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 33558528.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+
+Collecting perf data for Part 1.4 (representative size 4096)...
+
+NOTE: Report section 2.3 (for simd / collapse(2)) is not collected by this script
+because those variants are not implemented as separate menu options in mult.cpp yet.
+
+Done. Generated files:
+- /home/josebreis05/repos/g11/assign1/src/../results/cpp_report_20260319_170236.txt
+- /home/josebreis05/repos/g11/assign1/src/../results/cpp_report_20260319_170236.csv
+- /home/josebreis05/repos/g11/assign1/src/../results/cpp_perf_20260319_170236.txt

@@ -1,0 +1,350 @@
+
+================================================================
+PERF CASE | ijk | op=1 | size=4096
+================================================================
+
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, parallel for outer)
+5. Parallel V1-B  (ijk, parallel inner k)
+6. Parallel V2    (ikj, parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V1-ijk
+Matrix     : 4096x4096
+Time (s)   : 231.060396
+GFlop/s    : 0.595
+CSV        : P1-V1-ijk,4096,-,-,231.060396,0.595
+===================
+
+Result preview (first row, up to 10 values): 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, parallel for outer)
+5. Parallel V1-B  (ijk, parallel inner k)
+6. Parallel V2    (ikj, parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+ Performance counter stats for 'java Mult':
+
+   231,535,685,600      task-clock                       #    1.001 CPUs utilized             
+             8,760      context-switches                 #   37.834 /sec                      
+               141      cpu-migrations                   #    0.609 /sec                      
+           108,809      page-faults                      #  469.945 /sec                      
+   413,454,849,462      cpu_atom/instructions/           #    0.69  insn per cycle              (0.05%)
+   727,788,626,054      cpu_core/instructions/           #    0.55  insn per cycle              (99.94%)
+   600,341,550,711      cpu_atom/cycles/                 #    2.593 GHz                         (0.05%)
+ 1,312,165,795,800      cpu_core/cycles/                 #    5.667 GHz                         (99.94%)
+    71,295,594,367      cpu_atom/branches/               #  307.925 M/sec                       (0.05%)
+    86,936,648,357      cpu_core/branches/               #  375.478 M/sec                       (99.94%)
+     3,075,648,068      cpu_atom/branch-misses/          #    4.31% of all branches             (0.05%)
+        38,602,631      cpu_core/branch-misses/          #    0.04% of all branches             (99.94%)
+ #     87.1 %  tma_backend_bound      
+                                                  #      0.8 %  tma_bad_speculation    
+                                                  #      2.8 %  tma_frontend_bound     
+                                                  #      9.4 %  tma_retiring             (99.94%)
+ #     19.6 %  tma_bad_speculation    
+                                                  #     16.1 %  tma_retiring             (0.05%)
+ #     32.7 %  tma_backend_bound      
+                                                  #     31.7 %  tma_frontend_bound       (0.05%)
+
+     231.288809934 seconds time elapsed
+
+     231.288936000 seconds user
+       0.426114000 seconds sys
+
+
+
+================================================================
+PERF CASE | ikj | op=2 | size=4096
+================================================================
+
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, parallel for outer)
+5. Parallel V1-B  (ijk, parallel inner k)
+6. Parallel V2    (ikj, parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V2-ikj(line)
+Matrix     : 4096x4096
+Time (s)   : 34.198737
+GFlop/s    : 4.019
+CSV        : P1-V2-ikj(line),4096,-,-,34.198737,4.019
+===================
+
+Result preview (first row, up to 10 values): 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, parallel for outer)
+5. Parallel V1-B  (ijk, parallel inner k)
+6. Parallel V2    (ikj, parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+ Performance counter stats for 'java Mult':
+
+    34,494,689,365      task-clock                       #    1.003 CPUs utilized             
+             2,092      context-switches                 #   60.647 /sec                      
+                79      cpu-migrations                   #    2.290 /sec                      
+           108,520      page-faults                      #    3.146 K/sec                     
+    73,510,359,511      cpu_atom/instructions/           #    0.76  insn per cycle              (0.27%)
+   486,309,132,161      cpu_core/instructions/           #    2.62  insn per cycle              (99.71%)
+    96,162,197,935      cpu_atom/cycles/                 #    2.788 GHz                         (0.26%)
+   185,417,601,079      cpu_core/cycles/                 #    5.375 GHz                         (99.71%)
+    14,536,025,964      cpu_atom/branches/               #  421.399 M/sec                       (0.24%)
+    17,828,247,135      cpu_core/branches/               #  516.840 M/sec                       (99.71%)
+       730,585,252      cpu_atom/branch-misses/          #    5.03% of all branches             (0.23%)
+        19,897,459      cpu_core/branch-misses/          #    0.11% of all branches             (99.71%)
+ #     34.6 %  tma_backend_bound      
+                                                  #      0.8 %  tma_bad_speculation    
+                                                  #     11.7 %  tma_frontend_bound     
+                                                  #     52.9 %  tma_retiring             (99.71%)
+ #     24.0 %  tma_bad_speculation    
+                                                  #     18.2 %  tma_retiring             (0.27%)
+ #     25.1 %  tma_backend_bound      
+                                                  #     32.7 %  tma_frontend_bound       (0.25%)
+
+      34.402426015 seconds time elapsed
+
+      34.349515000 seconds user
+       0.193104000 seconds sys
+
+
+
+================================================================
+PERF CASE | block-256 | op=3 | size=4096 | extra=256
+================================================================
+
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, parallel for outer)
+5. Parallel V1-B  (ijk, parallel inner k)
+6. Parallel V2    (ikj, parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Block Size? 
+=== Run Summary ===
+Algorithm  : P1-V3-block
+Matrix     : 4096x4096
+Block size : 256
+Time (s)   : 26.343661
+GFlop/s    : 5.217
+CSV        : P1-V3-block,4096,-,256,26.343661,5.217
+===================
+
+Result preview (first row, up to 10 values): 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, parallel for outer)
+5. Parallel V1-B  (ijk, parallel inner k)
+6. Parallel V2    (ikj, parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+ Performance counter stats for 'java Mult':
+
+    26,639,708,406      task-clock                       #    1.003 CPUs utilized             
+             1,814      context-switches                 #   68.094 /sec                      
+                73      cpu-migrations                   #    2.740 /sec                      
+           108,562      page-faults                      #    4.075 K/sec                     
+    69,136,064,652      cpu_atom/instructions/           #    0.89  insn per cycle              (0.28%)
+   519,725,849,768      cpu_core/instructions/           #    3.78  insn per cycle              (99.70%)
+    77,461,503,115      cpu_atom/cycles/                 #    2.908 GHz                         (0.28%)
+   137,378,569,295      cpu_core/cycles/                 #    5.157 GHz                         (99.70%)
+    14,089,592,896      cpu_atom/branches/               #  528.894 M/sec                       (0.25%)
+    22,365,706,949      cpu_core/branches/               #  839.563 M/sec                       (99.70%)
+       717,244,715      cpu_atom/branch-misses/          #    5.09% of all branches             (0.24%)
+       180,739,941      cpu_core/branch-misses/          #    0.81% of all branches             (99.70%)
+ #      4.3 %  tma_backend_bound      
+                                                  #      2.4 %  tma_bad_speculation    
+                                                  #     18.6 %  tma_frontend_bound     
+                                                  #     74.7 %  tma_retiring             (99.70%)
+ #     22.7 %  tma_bad_speculation    
+                                                  #     20.9 %  tma_retiring             (0.25%)
+ #     22.1 %  tma_backend_bound      
+                                                  #     34.3 %  tma_frontend_bound       (0.27%)
+
+      26.558616128 seconds time elapsed
+
+      26.498175000 seconds user
+       0.185057000 seconds sys
+
+
+
+================================================================
+PERF CACHE EVENTS | ijk | op=1 | size=4096
+================================================================
+
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, parallel for outer)
+5. Parallel V1-B  (ijk, parallel inner k)
+6. Parallel V2    (ikj, parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V1-ijk
+Matrix     : 4096x4096
+Time (s)   : 243.562939
+GFlop/s    : 0.564
+CSV        : P1-V1-ijk,4096,-,-,243.562939,0.564
+===================
+
+Result preview (first row, up to 10 values): 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, parallel for outer)
+5. Parallel V1-B  (ijk, parallel inner k)
+6. Parallel V2    (ikj, parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+ Performance counter stats for 'java Mult':
+
+    67,187,367,080      cpu_core/mem_load_retired.l1_miss/                                        (99.94%)
+    64,042,731,983      cpu_core/mem_load_retired.l2_miss/                                        (99.94%)
+
+     243.765162851 seconds time elapsed
+
+     243.876241000 seconds user
+       0.299129000 seconds sys
+
+
+
+================================================================
+PERF CACHE EVENTS | ikj | op=2 | size=4096
+================================================================
+
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, parallel for outer)
+5. Parallel V1-B  (ijk, parallel inner k)
+6. Parallel V2    (ikj, parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V2-ikj(line)
+Matrix     : 4096x4096
+Time (s)   : 33.535386
+GFlop/s    : 4.098
+CSV        : P1-V2-ikj(line),4096,-,-,33.535386,4.098
+===================
+
+Result preview (first row, up to 10 values): 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, parallel for outer)
+5. Parallel V1-B  (ijk, parallel inner k)
+6. Parallel V2    (ikj, parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+ Performance counter stats for 'java Mult':
+
+     1,081,737,067      cpu_core/mem_load_retired.l1_miss/                                        (99.79%)
+        44,098,460      cpu_core/mem_load_retired.l2_miss/                                        (99.79%)
+
+      33.737641413 seconds time elapsed
+
+      33.689677000 seconds user
+       0.165106000 seconds sys
+
+
+
+================================================================
+PERF CACHE EVENTS | block-256 | op=3 | size=4096 | extra=256
+================================================================
+
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, parallel for outer)
+5. Parallel V1-B  (ijk, parallel inner k)
+6. Parallel V2    (ikj, parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Block Size? 
+=== Run Summary ===
+Algorithm  : P1-V3-block
+Matrix     : 4096x4096
+Block size : 256
+Time (s)   : 26.149426
+GFlop/s    : 5.256
+CSV        : P1-V3-block,4096,-,256,26.149426,5.256
+===================
+
+Result preview (first row, up to 10 values): 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 8390656.0 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, parallel for outer)
+5. Parallel V1-B  (ijk, parallel inner k)
+6. Parallel V2    (ikj, parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+ Performance counter stats for 'java Mult':
+
+       923,802,616      cpu_core/mem_load_retired.l1_miss/                                        (99.69%)
+        10,219,453      cpu_core/mem_load_retired.l2_miss/                                        (99.69%)
+
+      26.371115317 seconds time elapsed
+
+      26.313797000 seconds user
+       0.159895000 seconds sys
+
+

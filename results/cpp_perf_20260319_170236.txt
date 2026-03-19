@@ -1,0 +1,350 @@
+
+================================================================
+PERF CASE | ijk | op=1 | size=4096
+================================================================
+
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V1-ijk(transposed B)
+Matrix     : 4096x4096
+Time (s)   : 32.950363
+GFlop/s    : 4.171
+CSV        : P1-V1-ijk(transposed B),4096,-,-,32.950363,4.171
+===================
+
+Result preview (first row, up to 10 values): 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+ Performance counter stats for './multCPP':
+
+    33,138,814,017      task-clock                       #    1.000 CPUs utilized             
+               272      context-switches                 #    8.208 /sec                      
+                20      cpu-migrations                   #    0.604 /sec                      
+           131,219      page-faults                      #    3.960 K/sec                     
+   179,942,629,222      cpu_atom/instructions/           #    1.41  insn per cycle              (0.01%)
+   413,923,596,437      cpu_core/instructions/           #    2.31  insn per cycle              (99.99%)
+   127,800,050,321      cpu_atom/cycles/                 #    3.857 GHz                         (0.01%)
+   178,931,344,899      cpu_core/cycles/                 #    5.399 GHz                         (99.99%)
+    26,879,071,750      cpu_atom/branches/               #  811.105 M/sec                       (0.01%)
+    68,991,887,950      cpu_core/branches/               #    2.082 G/sec                       (99.99%)
+       225,013,823      cpu_atom/branch-misses/          #    0.84% of all branches             (0.01%)
+        17,095,508      cpu_core/branch-misses/          #    0.02% of all branches             (99.99%)
+ #     54.4 %  tma_backend_bound      
+                                                  #      0.4 %  tma_bad_speculation    
+                                                  #     14.7 %  tma_frontend_bound     
+                                                  #     30.6 %  tma_retiring             (99.99%)
+ #     -2.7 %  tma_bad_speculation    
+                                                  #     28.7 %  tma_retiring             (0.01%)
+ #     63.2 %  tma_backend_bound      
+                                                  #     10.8 %  tma_frontend_bound       (0.01%)
+
+      33.143715490 seconds time elapsed
+
+      32.994923000 seconds user
+       0.144982000 seconds sys
+
+
+
+================================================================
+PERF CASE | ikj | op=2 | size=4096
+================================================================
+
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V2-ikj(line)
+Matrix     : 4096x4096
+Time (s)   : 33.758829
+GFlop/s    : 4.071
+CSV        : P1-V2-ikj(line),4096,-,-,33.758829,4.071
+===================
+
+Result preview (first row, up to 10 values): 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+ Performance counter stats for './multCPP':
+
+    33,872,550,605      task-clock                       #    1.000 CPUs utilized             
+               245      context-switches                 #    7.233 /sec                      
+                23      cpu-migrations                   #    0.679 /sec                      
+            98,448      page-faults                      #    2.906 K/sec                     
+   136,253,647,973      cpu_atom/instructions/           #    0.99  insn per cycle              (0.03%)
+   551,239,817,945      cpu_core/instructions/           #    3.05  insn per cycle              (99.96%)
+   137,343,278,199      cpu_atom/cycles/                 #    4.055 GHz                         (0.03%)
+   180,666,366,562      cpu_core/cycles/                 #    5.334 GHz                         (99.96%)
+    24,733,653,719      cpu_atom/branches/               #  730.198 M/sec                       (0.03%)
+    68,972,113,573      cpu_core/branches/               #    2.036 G/sec                       (99.96%)
+        88,167,741      cpu_atom/branch-misses/          #    0.36% of all branches             (0.03%)
+        17,032,425      cpu_core/branch-misses/          #    0.02% of all branches             (99.96%)
+ #     39.2 %  tma_backend_bound      
+                                                  #      0.8 %  tma_bad_speculation    
+                                                  #     16.9 %  tma_frontend_bound     
+                                                  #     43.1 %  tma_retiring             (99.96%)
+ #      1.5 %  tma_bad_speculation    
+                                                  #     27.2 %  tma_retiring             (0.03%)
+ #     60.3 %  tma_backend_bound      
+                                                  #     10.9 %  tma_frontend_bound       (0.04%)
+
+      33.876765894 seconds time elapsed
+
+      33.768128000 seconds user
+       0.104987000 seconds sys
+
+
+
+================================================================
+PERF CASE | block-256 | op=3 | size=4096 | extra=256
+================================================================
+
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Block Size? 
+=== Run Summary ===
+Algorithm  : P1-V3-block
+Matrix     : 4096x4096
+Block size : 256
+Time (s)   : 18.940341
+GFlop/s    : 7.256
+CSV        : P1-V3-block,4096,-,256,18.940341,7.256
+===================
+
+Result preview (first row, up to 10 values): 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+ Performance counter stats for './multCPP':
+
+    19,057,887,151      task-clock                       #    0.999 CPUs utilized             
+               147      context-switches                 #    7.713 /sec                      
+                19      cpu-migrations                   #    0.997 /sec                      
+            98,451      page-faults                      #    5.166 K/sec                     
+    78,108,706,049      cpu_atom/instructions/           #    1.01  insn per cycle              (0.08%)
+   485,632,897,148      cpu_core/instructions/           #    4.68  insn per cycle              (99.90%)
+    77,373,859,438      cpu_atom/cycles/                 #    4.060 GHz                         (0.08%)
+   103,671,545,854      cpu_core/cycles/                 #    5.440 GHz                         (99.90%)
+    14,091,087,106      cpu_atom/branches/               #  739.383 M/sec                       (0.09%)
+    69,480,363,324      cpu_core/branches/               #    3.646 G/sec                       (99.90%)
+        39,501,948      cpu_atom/branch-misses/          #    0.28% of all branches             (0.09%)
+       269,909,939      cpu_core/branch-misses/          #    0.39% of all branches             (99.90%)
+ #     26.2 %  tma_backend_bound      
+                                                  #      6.0 %  tma_bad_speculation    
+                                                  #      2.6 %  tma_frontend_bound     
+                                                  #     65.2 %  tma_retiring             (99.90%)
+ #      2.6 %  tma_bad_speculation    
+                                                  #     27.1 %  tma_retiring             (0.09%)
+ #     59.7 %  tma_backend_bound      
+                                                  #     10.6 %  tma_frontend_bound       (0.09%)
+
+      19.068970148 seconds time elapsed
+
+      18.950560000 seconds user
+       0.107991000 seconds sys
+
+
+
+================================================================
+PERF CACHE EVENTS | ijk | op=1 | size=4096
+================================================================
+
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V1-ijk(transposed B)
+Matrix     : 4096x4096
+Time (s)   : 32.407616
+GFlop/s    : 4.241
+CSV        : P1-V1-ijk(transposed B),4096,-,-,32.407616,4.241
+===================
+
+Result preview (first row, up to 10 values): 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+ Performance counter stats for './multCPP':
+
+       572,976,555      cpu_core/mem_load_retired.l1_miss/                                        (99.97%)
+        68,565,584      cpu_core/mem_load_retired.l2_miss/                                        (99.97%)
+
+      32.581905439 seconds time elapsed
+
+      32.434474000 seconds user
+       0.143984000 seconds sys
+
+
+
+================================================================
+PERF CACHE EVENTS | ikj | op=2 | size=4096
+================================================================
+
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? 
+=== Run Summary ===
+Algorithm  : P1-V2-ikj(line)
+Matrix     : 4096x4096
+Time (s)   : 33.131958
+GFlop/s    : 4.148
+CSV        : P1-V2-ikj(line),4096,-,-,33.131958,4.148
+===================
+
+Result preview (first row, up to 10 values): 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+ Performance counter stats for './multCPP':
+
+     5,516,968,490      cpu_core/mem_load_retired.l1_miss/                                        (100.00%)
+       562,573,095      cpu_core/mem_load_retired.l2_miss/                                        (100.00%)
+
+      33.244694785 seconds time elapsed
+
+      33.141222000 seconds user
+       0.100991000 seconds sys
+
+
+
+================================================================
+PERF CACHE EVENTS | block-256 | op=3 | size=4096 | extra=256
+================================================================
+
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: Dimensions: lins=cols ? Block Size? 
+=== Run Summary ===
+Algorithm  : P1-V3-block
+Matrix     : 4096x4096
+Block size : 256
+Time (s)   : 18.821730
+GFlop/s    : 7.302
+CSV        : P1-V3-block,4096,-,256,18.821730,7.302
+===================
+
+Result preview (first row, up to 10 values): 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 8390656.000 
+
+── Part 1 ──────────────────────────
+1. Multiplication
+2. Line Multiplication
+3. Block Multiplication
+── Part 2 ──────────────────────────
+4. Parallel V1-A  (ijk, omp parallel for outer)
+5. Parallel V1-B  (ijk, manual inner-k split - race)
+6. Parallel V2    (ikj, omp parallel for outer)
+────────────────────────────────────
+0. Exit
+Selection?: 
+ Performance counter stats for './multCPP':
+
+     5,472,243,009      cpu_core/mem_load_retired.l1_miss/                                      
+        25,630,098      cpu_core/mem_load_retired.l2_miss/                                      
+
+      18.933683400 seconds time elapsed
+
+      18.831547000 seconds user
+       0.099997000 seconds sys
+
+
