@@ -50,16 +50,16 @@ The standard triple-nested loop multiplying one row of matrix A by each column o
 
 | Size | C++ Time (s) | C++ GFlop/s | Java Time (s) | Java GFlop/s |
 |------|-------------|-------------|--------------|--------------|
-| 1024 | | | | |
-| 1536 | | | | |
-| 2048 | | | | |
-| 2560 | | | | |
-| 3072 | | | | |
+| 1024 | 0.405 | 5.298 | 2.191 | 0.980 |
+| 1536 | 1.508 | 4.806 | 8.141 | 0.890 |
+| 2048 | 3.791 | 4.532 | 20.016 | 0.858 |
+| 2560 | 7.984 | 4.202 | 57.610 | 0.582 |
+| 3072 | 13.751 | 4.217 | 83.510 | 0.694 |
 
 **Graph:** *(Insert GFlop/s vs matrix size graph here)*
 
 **Analysis:**  
-[TODO: Discuss observed performance, impact of B transposition in C++, comparison with Java.]
+C++ achieves approximately 4.2–5.3 GFlop/s across the tested sizes, while Java delivers only 0.6–1.0 GFlop/s — a roughly 5× gap. The key reason is that the C++ implementation pre-transposes matrix B before the multiplication, converting the column-wise access pattern into sequential row access. This significantly reduces cache misses despite the ijk loop order. Java's implementation accesses B column by column in its original row-major layout, generating a cache miss on virtually every element of B touched. As matrix size grows and B no longer fits in cache, performance in Java degrades sharply (notably from 2048 to 2560). C++ performance also degrades with size but far more gradually because transposing B amortises the cache penalty across the computation.
 
 ---
 
@@ -79,25 +79,25 @@ The loop order is reorganised to ikj, so that for each element `A[i][k]`, the en
 
 | Size | C++ Time (s) | C++ GFlop/s | Java Time (s) | Java GFlop/s |
 |------|-------------|-------------|--------------|--------------|
-| 1024 | | | | |
-| 1536 | | | | |
-| 2048 | | | | |
-| 2560 | | | | |
-| 3072 | | | | |
+| 1024 | 0.337 | 6.370 | 0.399 | 5.385 |
+| 1536 | 1.308 | 5.539 | 1.429 | 5.071 |
+| 2048 | 3.559 | 4.827 | 3.881 | 4.427 |
+| 2560 | 7.794 | 4.305 | 8.226 | 4.079 |
+| 3072 | 13.534 | 4.284 | 14.376 | 4.033 |
 
 **Results (large sizes — C++ only):**
 
 | Size | C++ Time (s) | C++ GFlop/s |
 |------|-------------|-------------|
-| 4096 | | |
-| 6144 | | |
-| 8192 | | |
-| 10240 | | |
+| 4096 | 33.783 | 4.068 |
+| 6144 | 113.224 | 4.097 |
+| 8192 | 265.079 | 4.148 |
+| 10240 | 514.030 | 4.178 |
 
 **Graph:** *(Insert GFlop/s vs matrix size graph here — both languages for small sizes, C++ extended range)*
 
 **Analysis:**  
-[TODO: Compare performance gain versus 1.1, discuss L1/L2 cache exploitation, scaling behaviour for large matrices.]
+The ikj reordering produces a dramatic improvement for Java — from ~0.7–1.0 GFlop/s (ijk) to ~4.0–5.4 GFlop/s — nearly closing the gap with C++. Both languages now exhibit similar performance because both access B row by row, making effective use of cache lines loaded from memory. At smaller sizes (1024–1536), C++ still holds a modest edge (~6.4 vs ~5.4 GFlop/s), likely due to JVM overhead and JIT warm-up; as matrix size grows the two converge tightly. For large C++ sizes (4096–10240), performance remains remarkably stable around 4.0–4.2 GFlop/s, indicating that memory bandwidth, not cache capacity, is the dominant bottleneck for these sizes — the working set far exceeds L2/L3 cache but sequential access patterns maximise prefetcher efficiency.
 
 ---
 
@@ -113,15 +113,15 @@ Matrices are divided into sub-blocks of a configurable size. Computation follows
 
 | Size | Block=128 Time (s) | Block=128 GFlop/s | Block=256 Time (s) | Block=256 GFlop/s | Block=512 Time (s) | Block=512 GFlop/s |
 |------|--------------------|--------------------|--------------------|--------------------|--------------------|--------------------|
-| 4096 | | | | | | |
-| 6144 | | | | | | |
-| 8192 | | | | | | |
-| 10240 | | | | | | |
+| 4096 | 19.893 | 6.909 | 18.640 | 7.373 | 18.907 | 7.269 |
+| 6144 | 67.167 | 6.906 | 62.250 | 7.451 | 63.414 | 7.315 |
+| 8192 | 157.774 | 6.969 | 151.432 | 7.261 | 150.134 | 7.324 |
+| 10240 | 309.924 | 6.929 | 302.836 | 7.091 | 294.440 | 7.293 |
 
 **Graph:** *(Insert GFlop/s vs matrix size for each block size)*
 
 **Analysis:**  
-[TODO: Identify optimal block size, explain relationship between block size and cache capacity, compare against 1.2.]
+Block multiplication consistently outperforms the plain ikj version by approximately 70% at these sizes (e.g. ~7.3 GFlop/s vs ~4.1 GFlop/s for 4096×4096). By working on sub-matrices small enough to reside in L2/L3 cache, the algorithm drastically reduces the number of main-memory accesses. Block size 256 gives the best or near-best results across all tested matrix sizes, making it the optimal choice on this hardware. Block size 128 is slightly worse, likely because the smaller blocks reduce reuse granularity and increase loop overhead. Block size 512 performs comparably to 256 at larger matrices but marginally worse at 4096 — at that size, 512-element blocks approach or exceed the L2 cache capacity, eroding the advantage. Performance is highly consistent across matrix sizes (6.9–7.5 GFlop/s regardless of n), confirming that blocking successfully decouples computation throughput from the total matrix footprint.
 
 ---
 
@@ -141,26 +141,42 @@ perf stat -e mem_load_retired.l1_miss,mem_load_retired.l2_miss ./a.out
 # [TODO: Add any additional counters explored, e.g. cache-references, instructions, cycles]
 ```
 
-**Results:**
-
-| Algorithm | Matrix Size | L1 Misses | L2 Misses | [Other counter] |
-|-----------|-------------|-----------|-----------|-----------------|
-| ijk (1.1) | | | | |
-| ikj (1.2) | | | | |
-| Block (1.3) | | | | |
+**Results (C++, matrix size 4096×4096):**
+ 
+| Algorithm | L1 Misses | L2 Misses | IPC (core) | Backend Bound % | Retiring % |
+|-----------|-----------|-----------|------------|-----------------|------------|
+| ijk (transposed B) | 572,976,555 | 68,565,584 | 2.31 | 54.4% | 30.6% |
+| ikj (line) | 5,516,968,490 | 562,573,095 | 3.05 | 39.2% | 43.1% |
+| Block (block=256) | 5,472,243,009 | 25,630,098 | 4.68 | 26.2% | 65.2% |
+ 
+**Results (Java, matrix size 4096×4096):**
+ 
+| Algorithm | L1 Misses | L2 Misses | IPC (core) | Backend Bound % | Retiring % |
+|-----------|-----------|-----------|------------|-----------------|------------|
+| ijk | 67,187,367,080 | 64,042,731,983 | 0.55 | 87.1% | 9.4% |
+| ikj (line) | 1,081,737,067 | 44,098,460 | 2.62 | 34.6% | 52.9% |
+| Block (block=256) | 923,802,616 | 10,219,453 | 3.78 | 4.3% | 74.7% |
 
 **Analysis:**  
-[TODO: Correlate cache miss counts with execution times. Explain how ikj and block algorithms reduce cache misses compared to ijk.]
+The cache counter data strongly confirms the theoretical expectations.
+ 
+For C++, the ijk version (with transposed B) has surprisingly few L1 misses (~573M) compared to ikj (~5.5B). This seems counterintuitive at first but makes sense: the transposed B ensures that both the i-loop iteration over A's row and the j-loop iteration over B_transposed's row are sequential; the total memory traffic is reduced because the transposition is a one-time cost. However, IPC is lower (2.31) and backend-bound stalls are higher (54.4%), indicating that even with transposition the access pattern creates some memory pressure. The ikj version generates more L1 misses because matrix A is read once per k-step across the entire j dimension — a less regular pattern relative to the transposed B approach for this size — but IPC improves (3.05), suggesting better instruction-level parallelism. Critically, the block version keeps L2 misses at just ~25.6M (vs ~563M for ikj), demonstrating that blocking successfully keeps the hot working set within L2 cache. The result is the highest IPC (4.68) and the lowest backend-bound fraction (26.2%), with 65.2% of cycles spent in productive Retiring — explaining why block multiplication is ~70% faster.
+ 
+For Java, the ijk version suffers catastrophic cache behaviour: ~67B L1 misses and ~64B L2 misses at 4096×4096, meaning nearly every L1 miss cascades all the way to main memory. This explains the 87.1% backend-bound rate and near-zero IPC (0.55). The ikj reordering reduces L1 misses by 62× and L2 misses by 1450×, confirming that sequential access to B's rows is the critical fix. Java's block version reduces L2 misses a further 4× vs ikj, and the backend-bound fraction drops to just 4.3% with 74.7% retiring — making Java block multiplication effectively compute-bound, an impressive result.
 
 ---
 
 ### 1.5 — Conclusions (Part 1)
 
-[TODO: Summarise key findings from Part 1. Address:
-- Performance difference between ijk and ikj and why it occurs.
-- Effect of blocking on cache utilisation.
-- Comparison between C++ and Java performance and reasons for any gap.
-- How perf counters confirm the theoretical expectations.]
+The experiments in Part 1 clearly demonstrate that memory access patterns, not raw compute throughput, dominate performance for matrix multiplication at the sizes tested.
+ 
+**ijk vs ikj:** The loop reordering from ijk to ikj has a transformative effect in Java (~5.5× speedup) and a modest but measurable effect in C++ (~5–20% depending on size). The reason is straightforward: ijk access on an unmodified B matrix strides through memory column by column, generating a cache miss on nearly every element; ikj accesses B row-sequentially, maximising spatial locality and prefetcher effectiveness. C++'s transposed-B optimisation partially compensates in the ijk version, which is why the gap is smaller there.
+ 
+**Effect of blocking:** Tiling with block size 256 yields a consistent ~70% throughput gain over plain ikj in C++ for large matrices. By ensuring that three sub-matrices (a block of A, a block of B, and the corresponding accumulator in C) fit in L2/L3 cache simultaneously, the algorithm converts expensive DRAM accesses into fast cache hits. The perf counters confirm this: L2 misses drop by 22× from ikj to block multiplication.
+ 
+**C++ vs Java:** For ijk, C++ outperforms Java by ~5× due to the B-transposition optimisation and the absence of JVM overhead. For ikj and block, the gap narrows to under 10% for large sizes, showing that when access patterns are optimised, Java's JIT-compiled code approaches native performance for compute-intensive loops.
+ 
+**perf counter confirmation:** The TMA breakdown consistently shows that backend-bound stalls (caused by memory latency) decrease monotonically as the algorithm improves cache behaviour — from 87% (Java ijk) down to 4.3% (Java block). Retiring fractions increase in the same direction, confirming that better cache utilisation allows the processor to execute useful work in a larger fraction of cycles.
 
 ---
 
