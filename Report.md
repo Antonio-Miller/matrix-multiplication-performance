@@ -21,8 +21,7 @@
 3. [Part 2 — Multi-Core Performance Evaluation](#part-2--multi-core-performance-evaluation)
    - [2.1 — Parallel Versions of Version 1 (ijk) and Version 2 (ikj)](#21--parallel-versions-of-version-1-ijk-and-version-2-ikj)
    - [2.2 — Version 2 Scalability with Thread Count (8192×8192)](#22--version-2-scalability-with-thread-count-81928192)
-   - [2.3 — Exploring OpenMP Directives](#23--exploring-openmp-directives)
-   - [2.4 — Conclusions (Part 2)](#24--conclusions-part-2)
+   - [2.3 — Conclusions (Part 2)](#23--conclusions-part-2)
 4. [Overall Conclusions](#overall-conclusions)
 
 ---
@@ -234,30 +233,58 @@ for (int i = 0; i < n; i++)
             C(i,j) += A(i,k) * B(k,j);
 ```
 
-**Results (4 threads, matrix sizes 1024–3072, step 512):**
+**Results — C++ (4 threads, matrix sizes 1024–3072, step 512):**
 
 | Size | V1-A Time (s) | V1-A GFlop/s | V1-B Time (s) | V1-B GFlop/s | V2 Time (s) | V2 GFlop/s |
 |------|--------------|--------------|--------------|--------------|------------|------------|
-| 1024 | | | | | | |
-| 1536 | | | | | | |
-| 2048 | | | | | | |
-| 2560 | | | | | | |
-| 3072 | | | | | | |
+| 1024 | 0.664 | 3.233 | 0.180 | 11.956 | 0.137 | 15.629 |
+| 1536 | 2.354 | 3.079 | 0.945 | 7.671 | 0.468 | 15.493 |
+| 2048 | 5.851 | 2.936 | 3.732 | 4.604 | 1.370 | 12.537 |
+| 2560 | 15.240 | 2.202 | 12.209 | 2.748 | 2.914 | 11.513 |
+| 3072 | 28.558 | 2.030 | 27.995 | 2.071 | 5.092 | 11.387 |
 
-**Speedup and Efficiency (relative to sequential ikj, 4 threads):**
+**Results — Java (4 threads, matrix sizes 1024–3072, step 512):**
+
+| Size | V1-A Time (s) | V1-A GFlop/s | V1-B Time (s) | V1-B GFlop/s | V2 Time (s) | V2 GFlop/s |
+|------|--------------|--------------|--------------|--------------|------------|------------|
+| 1024 | 0.696 | 3.085 | 0.228 | 9.435 | 0.162 | 13.238 |
+| 1536 | 2.558 | 2.833 | 1.213 | 5.974 | 0.490 | 14.806 |
+| 2048 | 6.357 | 2.703 | 3.708 | 4.633 | 1.360 | 12.637 |
+| 2560 | 18.299 | 1.834 | 13.111 | 2.559 | 2.890 | 11.609 |
+| 3072 | 32.074 | 1.808 | 25.740 | 2.253 | 4.988 | 11.624 |
+
+**Speedup and Efficiency — C++ (relative to sequential ikj, 4 threads):**
 
 | Size | V1-A Speedup | V1-A Efficiency | V2 Speedup | V2 Efficiency |
 |------|-------------|-----------------|-----------|---------------|
-| 1024 | | | | |
-| 1536 | | | | |
-| 2048 | | | | |
-| 2560 | | | | |
-| 3072 | | | | |
+| 1024 | 0.51 | 0.13 | 2.45 | 0.61 |
+| 1536 | 0.56 | 0.14 | 2.80 | 0.70 |
+| 2048 | 0.61 | 0.15 | 2.60 | 0.65 |
+| 2560 | 0.51 | 0.13 | 2.67 | 0.67 |
+| 3072 | 0.47 | 0.12 | 2.66 | 0.66 |
 
-**Graph:** *(Insert GFlop/s and Speedup vs matrix size for V1-A, V1-B, V2)*
+**Speedup and Efficiency — Java (relative to sequential ikj, 4 threads):**
 
-**Analysis:**  
-[TODO: Compare V1-A vs V1-B — explain the race condition in V1-B and its effect on correctness and performance. Compare V1-A vs V2 — discuss how cache-friendliness affects parallel performance. Comment on speedup and efficiency values.]
+| Size | V1-A Speedup | V1-A Efficiency | V2 Speedup | V2 Efficiency |
+|------|-------------|-----------------|-----------|---------------|
+| 1024 | 0.57 | 0.14 | 2.46 | 0.62 |
+| 1536 | 0.56 | 0.14 | 2.92 | 0.73 |
+| 2048 | 0.61 | 0.15 | 2.85 | 0.71 |
+| 2560 | 0.45 | 0.11 | 2.85 | 0.71 |
+| 3072 | 0.45 | 0.11 | 2.88 | 0.72 |
+
+**Graphs:**
+![C++ GFlop/s vs Size (4 threads)](graphs/05_part2_1_cpp_gflops_vs_size.png)
+![Java GFlop/s vs Size (4 threads)](graphs/05_part2_1_java_gflops_vs_size.png)
+![C++ Speedup and Efficiency](graphs/06_part2_1_cpp_speedup_efficiency.png)
+![Java Speedup and Efficiency](graphs/06_part2_1_java_speedup_efficiency.png)
+
+**Analysis:**
+V1-B parallelises the innermost k loop using `#pragma omp for` inside a `#pragma omp parallel` region, while the outer i and j loops are replicated across all threads. This introduces a data race on the shared variable `temp`: multiple threads concurrently accumulate partial products into the same memory location without synchronisation, producing incorrect results. The GFlop/s values reported for V1-B are therefore not indicative of useful computation — the apparent throughput at small sizes (e.g. 11.96 GFlop/s at 1024 in C++) merely reflects that work completes quickly when partial sums are silently lost. As matrix size increases, V1-B performance degrades sharply (to ~2.1 GFlop/s at 3072), dominated by the cost of n² implicit barriers at the end of each `#pragma omp for` region and by cache line invalidation as all threads contend on the same `temp` and `C(i,j)` addresses.
+
+V1-A correctly parallelises the outer i loop, assigning each thread a disjoint set of rows of C. However, the ijk loop order accesses matrix B column-wise (B(k,j)), which generates a cache miss on nearly every access. This cache penalty is severe enough that V1-A with 4 threads is consistently slower than the sequential ikj baseline, yielding speedups of 0.47–0.61 and efficiencies of 0.12–0.15. Parallelism alone cannot compensate for an access pattern that saturates the memory subsystem with random-stride requests.
+
+V2 combines correct outer-loop parallelism with the cache-friendly ikj access pattern. Each thread processes a contiguous block of rows, and within each row the computation traverses B sequentially. The result is a speedup of 2.5–2.8× over the sequential ikj version (efficiency 0.61–0.72), the highest of the three strategies. The sub-linear scaling relative to the ideal 4× is consistent with memory bandwidth contention: four threads issuing sequential streams simultaneously approach the bandwidth ceiling of the memory subsystem. C++ and Java exhibit closely matched behaviour across all three variants, confirming that parallelisation characteristics are driven by access pattern and thread coordination rather than by language runtime differences.
 
 ---
 
@@ -266,85 +293,70 @@ for (int i = 0; i < n; i++)
 **Description:**  
 Version 2 (ikj, `#pragma omp parallel for` on outer loop) is executed on an 8192×8192 matrix with a varying number of threads: 4, 8, 12, 16, 20, 24. The goal is to analyse scalability and identify any performance saturation or degradation.
 
-**Results:**
+**Results — C++:**
 
 | Threads | Time (s) | GFlop/s | Speedup (vs 1 thread) |
 |---------|---------|---------|----------------------|
-| 1 (baseline) | | | 1.00 |
-| 4 | | | |
-| 8 | | | |
-| 12 | | | |
-| 16 | | | |
-| 20 | | | |
-| 24 | | | |
+| 1 (baseline) | 274.712 | 4.002 | 1.00 |
+| 4 | 96.918 | 11.345 | 2.83 |
+| 8 | 76.098 | 14.449 | 3.61 |
+| 12 | 58.518 | 18.789 | 4.69 |
+| 16 | 51.680 | 21.276 | 5.32 |
+| 20 | 48.453 | 22.692 | 5.67 |
+| 24 | 49.514 | 22.206 | 5.55 |
 
-**Graph:** *(Insert GFlop/s and Speedup vs number of threads)*
+**Results — Java:**
 
-**Analysis:**  
-[TODO: Identify the point of diminishing returns. Discuss memory bandwidth as a potential bottleneck. Compare observed speedup against the ideal linear speedup.]
+| Threads | Time (s) | GFlop/s | Speedup (vs 1 thread) |
+|---------|---------|---------|----------------------|
+| 1 (baseline) | 264.144 | 4.163 | 1.00 |
+| 4 | 97.292 | 11.301 | 2.72 |
+| 8 | 71.041 | 15.477 | 3.72 |
+| 12 | 50.138 | 21.930 | 5.27 |
+| 16 | 46.698 | 23.545 | 5.66 |
+| 20 | 47.434 | 23.180 | 5.57 |
+| 24 | 48.978 | 22.449 | 5.39 |
 
----
+**Graphs:**
+![V2 Scaling GFlop/s](graphs/07_part2_2_v2_scaling_gflops.png)
+![V2 Scaling Speedup](graphs/08_part2_2_v2_scaling_speedup.png)
 
-### 2.3 — Exploring OpenMP Directives
+**Analysis:**
+Both languages exhibit a characteristic sub-linear scaling curve that flattens beyond 16 threads. From 1 to 12 threads, throughput increases steadily — C++ reaches 18.8 GFlop/s (4.69× speedup) and Java reaches 21.9 GFlop/s (5.27× speedup). Beyond 12 threads, gains diminish rapidly: adding another 4 threads (to 16) yields only a modest improvement, and at 20–24 threads performance plateaus or slightly regresses.
 
-**Description:**  
-Two additional OpenMP directives are explored on Version 2 (ikj) and compared against the baseline `#pragma omp parallel for`.
+The maximum observed speedup is approximately 5.7× in C++ (at 20 threads) and 5.7× in Java (at 16 threads), far below the ideal linear speedup of 20× or 16× respectively. This saturation is consistent with a memory-bandwidth-bound workload: the ikj multiplication on an 8192×8192 matrix requires streaming ~1.5 GB of data per pass through B, and once the aggregate memory bandwidth demanded by the active threads exceeds what the DRAM subsystem can deliver, additional threads yield no further benefit. The slight performance regression observed at 24 threads (C++: 22.2 GFlop/s, down from 22.7 at 20 threads; Java: 22.4 GFlop/s, down from 23.5 at 16 threads) is attributable to increased contention on shared memory controllers and higher thread scheduling overhead as thread count approaches or exceeds the physical core count of the system.
 
-#### `#pragma omp for simd`
-
-Combines loop parallelism with SIMD vectorisation. The compiler is instructed to both distribute iterations across threads and apply vector instructions within each thread's chunk.
-
-```cpp
-#pragma omp parallel for simd
-for (int i = 0; i < n; i++)
-    for (int k = 0; k < n; k++)
-        for (int j = 0; j < n; j++)
-            C(i,j) += A(i,k) * B(k,j);
-```
-
-#### `#pragma omp parallel for collapse(2)`
-
-Collapses the two outermost loops (i and k) into a single loop before distributing iterations, increasing the granularity of the parallel work and potentially improving load balance.
-
-```cpp
-#pragma omp parallel for collapse(2)
-for (int i = 0; i < n; i++)
-    for (int k = 0; k < n; k++)
-        for (int j = 0; j < n; j++)
-            C(i,j) += A(i,k) * B(k,j);
-```
-
-**Results (matrix size 8192×8192, thread counts: 4, 8, 12, 16, 20, 24):**
-
-| Threads | Baseline GFlop/s | `for simd` GFlop/s | `collapse(2)` GFlop/s |
-|---------|-----------------|--------------------|-----------------------|
-| 4 | | | |
-| 8 | | | |
-| 12 | | | |
-| 16 | | | |
-| 20 | | | |
-| 24 | | | |
-
-**Graph:** *(Insert GFlop/s vs number of threads for all three directives)*
-
-**Analysis:**  
-[TODO: Determine whether `simd` provides additional gains beyond thread-level parallelism. Assess whether `collapse(2)` improves load balance or memory access patterns. Explain results in terms of hardware capabilities.]
+Java scales slightly better than C++ in the 8–16 thread range, reaching higher absolute GFlop/s at 12 and 16 threads. This may reflect differences in JVM thread scheduling or memory allocation patterns that interact more favourably with the hardware prefetcher at these thread counts. At the extremes (1 thread and 20+ threads), both languages converge to nearly identical throughput, reinforcing the conclusion that memory bandwidth is the binding constraint.
 
 ---
 
-### 2.4 — Conclusions (Part 2)
+### 2.3 — Conclusions (Part 2)
 
-[TODO: Summarise key findings from Part 2. Address:
-- Why V1-A outperforms V1-B (race condition, synchronisation overhead).
-- Why V2 achieves better parallel performance than V1-A (cache locality preserved across threads).
-- Scalability characteristics and the role of memory bandwidth limits.
-- Effectiveness of `simd` and `collapse(2)` directives relative to the baseline.]
+The experiments in Part 2 demonstrate that effective parallelisation of matrix multiplication requires both correct thread coordination and cache-friendly memory access patterns.
+
+**V1-A vs V1-B:** V1-A parallelises the outer i loop, producing correct results with no data races. V1-B parallelises the inner k loop, introducing a race condition on the accumulator variable `temp`. While V1-B appears to achieve high throughput at small sizes, the results it produces are incorrect. Even setting correctness aside, V1-B suffers from n² implicit barriers (one per (i,j) pair) and severe false-sharing overhead, causing its performance to degrade below that of V1-A at larger sizes. V1-B is therefore unsuitable as a parallelisation strategy for this algorithm.
+
+**V1-A vs V2:** Both employ correct outer-loop parallelism, but V1-A uses the ijk loop order (column-wise access to B) while V2 uses ikj (row-wise access). The difference is decisive: V1-A with 4 threads is slower than the sequential ikj version (speedup < 1), whereas V2 achieves speedups of 2.5–2.9×. This result demonstrates that cache locality is a prerequisite for parallelism to be effective — distributing cache-hostile work across more cores merely multiplies the memory bottleneck.
+
+**Scalability:** Version 2 scales well up to approximately 12–16 threads on an 8192×8192 matrix, beyond which throughput saturates at ~22–23 GFlop/s. The maximum observed speedup of ~5.7× (at 20 threads in C++, 16 threads in Java) falls well short of ideal linear scaling, indicating that the workload transitions from compute-bound to memory-bandwidth-bound as thread count increases. The slight performance regression at 24 threads reflects contention on shared memory controllers and scheduling overhead.
+
+**C++ vs Java:** Both languages exhibit closely matched parallel performance across all experiments. At 4 threads, V2 achieves 11.3–15.6 GFlop/s in C++ and 11.3–14.8 GFlop/s in Java; at scale (8192×8192, 16 threads), Java marginally outperforms C++ (23.5 vs 21.3 GFlop/s). These results confirm that for compute-intensive, bandwidth-bound workloads with optimised access patterns, the JVM's JIT compiler produces code of comparable efficiency to ahead-of-time compiled C++.
 
 ---
 
 ## Overall Conclusions
 
-[TODO: Provide an integrative summary across both parts. Discuss the interplay between memory hierarchy effects and parallelism. Identify which combination of techniques (algorithm order + block size + threads + directives) delivers the best overall performance on the tested hardware. Reflect on what the perf counters reveal about the underlying bottlenecks.]
+This study examined two orthogonal axes of performance optimisation for dense matrix multiplication: memory access pattern (loop ordering and blocking) and multi-core parallelism (OpenMP threading). The results demonstrate that both axes interact multiplicatively — parallelism amplifies the throughput of cache-friendly algorithms and equally amplifies the penalties of cache-hostile ones.
+
+**Memory hierarchy dominance:** The single-core experiments established that loop reordering from ijk to ikj yields up to a 5.5× improvement in Java and a measurable improvement in C++, solely by converting column-wise B accesses into sequential row accesses. Block tiling with block size 256 provides an additional ~70% gain over plain ikj for large matrices by keeping sub-matrices within L2/L3 cache. The performance counters confirm the mechanism: L2 misses drop by 22× from ikj to block multiplication in C++, and the backend-bound stall fraction decreases from 87% (Java ijk) to 4.3% (Java block).
+
+**Parallelism as a multiplier:** The multi-core experiments showed that parallelising the cache-friendly ikj variant (V2) with 4 threads yields 11–16 GFlop/s — a 2.5–2.9× speedup over the sequential version. In contrast, parallelising the cache-hostile ijk variant (V1-A) actually decreases throughput relative to the sequential ikj baseline (speedup < 1). This result is significant: adding threads to a memory-bound algorithm does not improve performance; it worsens it by increasing contention on the memory subsystem.
+
+**Scalability limits:** Thread scaling experiments on 8192×8192 matrices revealed that V2 throughput saturates at approximately 22–23 GFlop/s (around 16–20 threads), reaching a maximum speedup of ~5.7×. The saturation point corresponds to the aggregate memory bandwidth ceiling of the test hardware. Beyond this point, additional threads contribute only scheduling and synchronisation overhead.
+
+**Best observed configuration:** Among the configurations tested, block multiplication (block size 256) on a single core delivered the highest per-core throughput (~7.4 GFlop/s), while parallel V2 at 16–20 threads delivered the highest absolute throughput (~23 GFlop/s). Combining blocking with multi-threading — though not explicitly benchmarked in this study — would be expected to yield further gains by reducing per-thread bandwidth demand.
+
+**Language comparison:** C++ and Java converge in performance once access patterns are optimised. The gap narrows from ~5× (ijk, where C++ benefits from manual B transposition) to under 10% (ikj and parallel variants). This indicates that the JVM's JIT compiler generates competitive machine code for regular, compute-intensive loops, and that algorithmic choices dominate over language runtime characteristics for this class of workload.
 
 ---
 
