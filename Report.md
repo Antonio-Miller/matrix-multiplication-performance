@@ -56,7 +56,8 @@ The standard triple-nested loop multiplying one row of matrix A by each column o
 | 2560 | 7.984 | 4.202 | 57.610 | 0.582 |
 | 3072 | 13.751 | 4.217 | 83.510 | 0.694 |
 
-**Graph:** *(Insert GFlop/s vs matrix size graph here)*
+**Graph:**
+![GFlop/s vs Matrix Size](graphs/01_part1_1_ijk_gflops_cpp_vs_java.png)
 
 **Analysis:**  
 C++ achieves approximately 4.2–5.3 GFlop/s across the tested sizes, while Java delivers only 0.6–1.0 GFlop/s — a roughly 5× gap. The key reason is that the C++ implementation pre-transposes matrix B before the multiplication, converting the column-wise access pattern into sequential row access. This significantly reduces cache misses despite the ijk loop order. Java's implementation accesses B column by column in its original row-major layout, generating a cache miss on virtually every element of B touched. As matrix size grows and B no longer fits in cache, performance in Java degrades sharply (notably from 2048 to 2560). C++ performance also degrades with size but far more gradually because transposing B amortises the cache penalty across the computation.
@@ -94,7 +95,9 @@ The loop order is reorganised to ikj, so that for each element `A[i][k]`, the en
 | 8192 | 265.079 | 4.148 |
 | 10240 | 514.030 | 4.178 |
 
-**Graph:** *(Insert GFlop/s vs matrix size graph here — both languages for small sizes, C++ extended range)*
+**Graph:**
+![ikj Small Sizes](graphs/02_part1_2_ikj_small_gflops_cpp_vs_java.png)
+![ikj Large Sizes C++](graphs/03_part1_2_ikj_large_cpp_gflops.png)
 
 **Analysis:**  
 The ikj reordering produces a dramatic improvement for Java — from ~0.7–1.0 GFlop/s (ijk) to ~4.0–5.4 GFlop/s — nearly closing the gap with C++. Both languages now exhibit similar performance because both access B row by row, making effective use of cache lines loaded from memory. At smaller sizes (1024–1536), C++ still holds a modest edge (~6.4 vs ~5.4 GFlop/s), likely due to JVM overhead and JIT warm-up; as matrix size grows the two converge tightly. For large C++ sizes (4096–10240), performance remains remarkably stable around 4.0–4.2 GFlop/s, indicating that memory bandwidth, not cache capacity, is the dominant bottleneck for these sizes — the working set far exceeds L2/L3 cache but sequential access patterns maximise prefetcher efficiency.
@@ -118,7 +121,8 @@ Matrices are divided into sub-blocks of a configurable size. Computation follows
 | 8192 | 157.774 | 6.969 | 151.432 | 7.261 | 150.134 | 7.324 |
 | 10240 | 309.924 | 6.929 | 302.836 | 7.091 | 294.440 | 7.293 |
 
-**Graph:** *(Insert GFlop/s vs matrix size for each block size)*
+**Graph:**
+![Block Multiplication](graphs/04_part1_3_block_cpp_gflops.png)
 
 **Analysis:**  
 Block multiplication consistently outperforms the plain ikj version by approximately 70% at these sizes (e.g. ~7.3 GFlop/s vs ~4.1 GFlop/s for 4096×4096). By working on sub-matrices small enough to reside in L2/L3 cache, the algorithm drastically reduces the number of main-memory accesses. Block size 256 gives the best or near-best results across all tested matrix sizes, making it the optimal choice on this hardware. Block size 128 is slightly worse, likely because the smaller blocks reduce reuse granularity and increase loop overhead. Block size 512 performs comparably to 256 at larger matrices but marginally worse at 4096 — at that size, 512-element blocks approach or exceed the L2 cache capacity, eroding the advantage. Performance is highly consistent across matrix sizes (6.9–7.5 GFlop/s regardless of n), confirming that blocking successfully decouples computation throughput from the total matrix footprint.
