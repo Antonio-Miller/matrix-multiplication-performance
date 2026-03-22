@@ -137,10 +137,10 @@ Linux `perf stat` was used to collect hardware performance counters for the thre
 **Commands used:**
 ```bash
 # General stats
-perf stat ./a.out
+perf stat ./multCPP
 
 # Cache miss counters
-perf stat -e mem_load_retired.l1_miss,mem_load_retired.l2_miss ./a.out
+perf stat -e cpu_core/mem_load_retired.l1_miss/,cpu_core/mem_load_retired.l2_miss/ ./multCPP
 
 # [TODO: Add any additional counters explored, e.g. cache-references, instructions, cycles]
 ```
